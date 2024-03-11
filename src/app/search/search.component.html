@@ -37,5 +37,7 @@
 <section>
   <h2>Search Results</h2>
   <button (click)="downloadMultipleFiles()">Download Multiple</button>
-  <app-search-results *ngFor="let sr of searchResults" [result]="sr" (checkboxCheckEvent)="checkboxEventHandler($event)"></app-search-results>
+  <mat-selection-list>
+    <app-search-results *ngFor="let sr of searchResults" [result]="sr" (checkboxCheckEvent)="checkboxEventHandler($event)"></app-search-results>
+  </mat-selection-list>
 </section>

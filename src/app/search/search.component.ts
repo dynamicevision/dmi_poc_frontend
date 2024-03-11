@@ -47,7 +47,7 @@ export class SearchComponent implements OnInit{
 
   async submitQuery() {
     const data = await this.searchService.search(this.searchForm.value.bucket??'', this.searchForm.value.query ?? '')
-    this.searchResults = data.content;
+    this.searchResults = data.content.sort((a, b) => a.name.localeCompare(b.name));
   }
 
   async checkboxEventHandler(data: any) {
@@ -75,7 +75,9 @@ export class SearchComponent implements OnInit{
       formData.append("file", file);
       formData.append('bucket', this.uploadForm.value.bucket??'');
 
-      await this.searchService.uploadFile(this.uploadForm.value.bucket??'', formData)
+      const uploadResp = await this.searchService.uploadFile(this.uploadForm.value.bucket??'', formData)
+      alert('Upload complete: '+uploadResp.name)
+
     }
   }
 }

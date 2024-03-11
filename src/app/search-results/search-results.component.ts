@@ -3,13 +3,18 @@ import {BucketDetails} from "../models/bucket-details";
 import {MatListModule} from "@angular/material/list";
 import {FormsModule} from "@angular/forms";
 import {SearchService} from "../search.service";
+import {MatLineModule} from "@angular/material/core";
+import {MatIcon, MatIconModule} from "@angular/material/icon";
 
 @Component({
   selector: 'app-search-results',
   standalone: true,
   imports: [
     MatListModule,
-    FormsModule
+    MatLineModule,
+    MatIconModule,
+    FormsModule,
+    MatIcon,
   ],
   templateUrl: './search-results.component.html',
   styleUrl: './search-results.component.css'

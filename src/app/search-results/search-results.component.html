@@ -1,6 +1,11 @@
-<section>
-  <input type="checkbox" [(ngModel)]="isChecked"(change)="checkboxChangeHandler($event)">
-  <p>Name: {{result.name}}</p>
-  <p>Last Modified Date: {{result.lastModified}}</p>
-  <button (click)="downloadMyFile()">Download File</button>
-</section>
+<mat-list-option role="listitem" [(ngModel)]="isChecked" (selectedChange)="checkboxChangeHandler($event)">
+ <!-- <input type="checkbox" [(ngModel)]="isChecked" (change)="checkboxChangeHandler($event)">-->
+  <span matLine>
+    <span>{{result.name}} </span>
+    <span> <mat-icon matListIcon>watch</mat-icon> {{result.lastModified}}, </span>
+    <span class="demo-2"><mat-icon matListIcon>expand</mat-icon> {{result.size}} bytes, </span>
+    <span class="demo-2"> <mat-icon matListIcon>note</mat-icon> {{result.storageClass}}, </span>
+    <button (click)="downloadMyFile()">Download File</button>
+  </span>
+
+</mat-list-option>
