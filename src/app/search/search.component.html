@@ -1,0 +1,41 @@
+<section class="results">
+  <h2>Bucket List</h2>
+  <app-bucket-details *ngFor="let bd of buckets" [bucketData]="bd"></app-bucket-details>
+</section>
+<section>
+  <h2>Upload File</h2>
+  <form [formGroup]="uploadForm">
+  Select Bucket:
+  <select formControlName="bucket">
+    <option *ngFor="let bd of buckets" [value]="bd.name">{{bd.name}}</option>
+  </select>
+  <input type="file" (change)="onFileSelected($event)" #fileUpload class="file-upload-input">
+  <div class="file-upload">
+
+    {{fileName || "No file uploaded yet."}}
+
+    <button mat-mini-fab color="primary" class="upload-btn"
+            (click)="fileUpload.click()">
+      <mat-icon>attach_file</mat-icon>
+    </button>
+
+  </div>
+  </form>
+</section>
+<section>
+  <h2>Search Bucket Objects</h2>
+  <form [formGroup]="searchForm" (submit)="submitQuery()">
+  Select Bucket:
+  <select formControlName="bucket">
+    <option *ngFor="let bd of buckets" [value]="bd.name">{{bd.name}}</option>
+  </select>
+  <input type="text" formControlName="query">
+  <button type="submit">Search</button>
+</form>
+</section>
+
+<section>
+  <h2>Search Results</h2>
+  <button (click)="downloadMultipleFiles()">Download Multiple</button>
+  <app-search-results *ngFor="let sr of searchResults" [result]="sr" (checkboxCheckEvent)="checkboxEventHandler($event)"></app-search-results>
+</section>

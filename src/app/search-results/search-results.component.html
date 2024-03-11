@@ -1,0 +1,6 @@
+<section>
+  <input type="checkbox" [(ngModel)]="isChecked"(change)="checkboxChangeHandler($event)">
+  <p>Name: {{result.name}}</p>
+  <p>Last Modified Date: {{result.lastModified}}</p>
+  <button (click)="downloadMyFile()">Download File</button>
+</section>
