@@ -29,6 +29,17 @@ export class SearchService {
     return await data.json() ?? null;
   }
 
+  async logMessages(operation: string, downloadData: any){
+    await fetch(this.baseUrl+'/logs', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({operation, message: 'Downloaded file: '+downloadData.name})
+    })
+  }
+
 
   listBucketObjects() {
     return [

@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {BucketDetails} from "../models/bucket-details";
 import {MatListModule} from "@angular/material/list";
 import {FormsModule} from "@angular/forms";
+import {SearchService} from "../search.service";
 
 @Component({
   selector: 'app-search-results',
@@ -17,8 +18,12 @@ export class SearchResultsComponent {
   @Input() result!: any
   @Output() checkboxCheckEvent: EventEmitter<any> = new EventEmitter<any>()
   isChecked?: boolean
-  downloadMyFile() {
+
+  searchService: SearchService = inject(SearchService);
+
+ async downloadMyFile() {
     if(confirm("Are you sure to download "+this.result.name)) {
+      await this.searchService.logMessages('download', this.result)
       const link = document.createElement('a');
       link.setAttribute('target', '_blank');
       link.setAttribute('href', this.result.url);
